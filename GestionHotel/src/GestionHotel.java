@@ -20,60 +20,6 @@ public class GestionHotel {
         inicializarDatosEjemplo();
     }
 
-    private void inicializarDatosEjemplo() {
-        // Datos iniciales para pruebas
-        agregarHabitacion(new Habitacion(101, "Individual", 50.0));
-        agregarHabitacion(new Habitacion(102, "Doble", 80.0));
-        agregarTrabajador(new Trabajador("Juan Pérez", "Recepcionista", 1200.0));
-    }
-
-    // Métodos para agregar elementos
-    public void agregarHabitacion(Habitacion habitacion) {
-        habitaciones.add(habitacion);
-        System.out.println("Habitación añadida: " + habitacion);
-    }
-
-    public void agregarEvento(Evento evento) {
-        eventos.add(evento);
-        System.out.println("Evento añadido: " + evento.getNombre());
-    }
-
-    public void agregarCliente(Cliente cliente) {
-        clientes.add(cliente);
-        System.out.println("Cliente registrado: " + cliente.getNombre());
-    }
-
-    public void agregarTrabajador(Trabajador trabajador) {
-        trabajadores.add(trabajador);
-        System.out.println("Trabajador contratado: " + trabajador.getNombre());
-    }
-
-    // Métodos para mostrar listados
-    public void mostrarHabitaciones() {
-        System.out.println("\nLISTADO DE HABITACIONES:");
-        if (habitaciones.isEmpty()) {
-            System.out.println("No hay habitaciones registradas.");
-            return;
-        }
-        System.out.printf("%-10s %-15s %-10s %-10s%n", "Número", "Tipo", "Precio", "Estado");
-        for (Habitacion h : habitaciones) {
-            System.out.printf("%-10d %-15s %-10.2f %-10s%n", 
-                h.getNumero(), h.getTipo(), h.getPrecio(), 
-                h.isOcupada() ? "Ocupada" : "Disponible");
-        }
-    }
-
-    public void mostrarEventos() {
-        System.out.println("\nEVENTOS PROGRAMADOS:");
-        if (eventos.isEmpty()) {
-            System.out.println("No hay eventos programados.");
-            return;
-        }
-        for (Evento e : eventos) {
-            System.out.println("- " + e.getNombre() + " (Fecha: " + e.getFecha() + ")");
-        }
-    }
-
     // Menú principal interactivo
     public void ejecutarSistema() {
         int opcion;
@@ -135,6 +81,34 @@ public class GestionHotel {
                 break;
         }
     }
+
+    
+        // Métodos para mostrar listados
+        public void mostrarHabitaciones() {
+            System.out.println("\nLISTADO DE HABITACIONES:");
+            if (habitaciones.isEmpty()) {
+                System.out.println("No hay habitaciones registradas.");
+                return;
+            }
+            System.out.printf("%-10s %-15s %-10s %-10s%n", "Número", "Tipo", "Precio", "Estado");
+            for (Habitacion h : habitaciones) {
+                System.out.printf("%-10d %-15s %-10.2f %-10s%n", 
+                    h.getNumero(), h.getTipo(), h.getPrecio(), 
+                    h.isOcupada() ? "Ocupada" : "Disponible");
+            }
+        }
+    
+        public void mostrarEventos() {
+            System.out.println("\nEVENTOS PROGRAMADOS:");
+            if (eventos.isEmpty()) {
+                System.out.println("No hay eventos programados.");
+                return;
+            }
+            for (Evento e : eventos) {
+                System.out.println("- " + e.getNombre() + " (Fecha: " + e.getFecha() + ")");
+            }
+        }
+    
 
     // Método para reservar habitación
     public boolean reservarHabitacion(int numero) {
