@@ -17,7 +17,6 @@ public class GestionHotel {
         clientes = new ArrayList<>();
         trabajadores = new ArrayList<>();
         scanner = new Scanner(System.in);
-        inicializarDatosEjemplo();
     }
 
     // Menú principal interactivo
