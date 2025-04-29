@@ -27,6 +27,10 @@ public class Cliente {
                 this.matriculaVehiculo = null;
             }
         }
+
+        public void getNombre(){
+
+        }
     
         @Override
         public String toString() {
