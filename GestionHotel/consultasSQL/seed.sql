@@ -1,0 +1,15 @@
+CREATE DATABASE Hotel;
+
+USE Hotel;
+
+CREATE TABLE Cliente
+
+CREATE TABLE Garaje
+
+CREATE TABLE Habitaciones
+
+CREATE TABLE Empleados
+
+CREATE TABLE Eventos
+
+CREATE TABLE Reservas
