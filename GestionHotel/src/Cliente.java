@@ -29,7 +29,7 @@ public class Cliente {
         }
 
         public void getNombre(){
-
+            
         }
     
         @Override
