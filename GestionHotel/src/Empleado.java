@@ -56,6 +56,16 @@ public class Empleado {
         this.turno = turno;
     }
 
+    @Override 
+    public String toString(){
+        return "Empleado{" +
+        "nombre='" + nombre + '\'' +
+        ", dni='" + dni + '\'' +
+        ", tipo='" + tipo + '\'' +
+        ", salario=" + salario +
+        ", turno='" + turno + '\'' +
+        '}';
+    }
 
 
 

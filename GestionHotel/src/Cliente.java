@@ -11,20 +11,19 @@ public class Cliente {
             this.numeroMatricula = numeroMatricula;
         }
         //Metodo para registrar un vehiculo en el garaje 
-        public void registrarVehiculo(Garaje garaje, String matricula) {
+        public boolean  registrarVehiculo(Garaje garaje, String matricula) {
             if (garaje.registrarVehiculo(matricula, this.numeroHabitacion)) {
-                this.matriculaVehiculo = matricula;
-                System.out.println("Vehículo registrado correctamente");
-            } else {
-                System.out.println("No se pudo registrar el vehículo");
+                this.numeroMatricula = matricula;
+                return true; 
             }
-            
+                return false;
         }
+
         //Metodo para liberar plaza de Garaje
         public void liberarVehiculo(Garaje garaje) {
-            if (matriculaVehiculo != null) {
+            if (numeroMatricula != null) {
                 garaje.retirarVehiculo(this.numeroHabitacion);
-                this.matriculaVehiculo = null;
+                this.numeroMatricula = null;
             }
         }
 
