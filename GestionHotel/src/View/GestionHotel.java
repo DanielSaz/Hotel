@@ -1,4 +1,9 @@
+package View;
 import java.util.*;
+
+import Model.Cliente;
+import Model.Garaje;
+
 import java.time.LocalDate;
 
 public class GestionHotel {
