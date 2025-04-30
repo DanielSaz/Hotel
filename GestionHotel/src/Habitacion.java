@@ -4,7 +4,7 @@ import java.util.List;
 public class Habitacion {
     
     private int numero;
-    private String tipo;  // Individual, Doble, Suite
+    private String tipo;  // Individual, Doble, Suite, Familiar 
     private double precioPorNoche;
     private boolean ocupada;
     private int planta;
