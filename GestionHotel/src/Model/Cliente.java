@@ -34,8 +34,8 @@ public class Cliente {
             }
         }
 
-        public void getNombre(){
-            return nombre;
+        public String getNombre(){
+            return this.nombre;
         }
     
         @Override
