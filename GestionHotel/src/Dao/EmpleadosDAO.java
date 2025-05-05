@@ -14,7 +14,7 @@ public class EmpleadosDAO {
     public void insertar(Empleado empleado) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "INSERT INTO Empleados (EmpleadoDni, Nombre, Apellido, Puesto, Email, Telefono) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Empleados (EmpleadoDni, Nombre, Apellido, Puesto, Email, Telefono, Jornada, HorasExtra) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conexion.prepareStatement(query)) {
                 stmt.setString(1, empleado.getDni()); // Asigna el valor del teléfono
                 stmt.setString(2, empleado.getNombre()); 
@@ -22,6 +22,8 @@ public class EmpleadosDAO {
                 stmt.setString(4, empleado.getPuesto());
                 stmt.setString(5, empleado.getEmail());
                 stmt.setString(6, empleado.getTelefono());
+                stmt.setString(7, empleado.getJornada());
+                stmt.setInt(8, empleado.getHoras());
                 
                 stmt.executeUpdate(); // Ejecuta la consulta de inserción
                 System.out.println("Empleado agregado exitosamente.");
@@ -42,7 +44,7 @@ public class EmpleadosDAO {
                     
                     stmt.setString(1, atributo ); // Columna que deseamos cambiar
                     stmt.setString(2,  valor); // valor que le queremos dar
-                    stmt.setString(3, dni); // Asigna el ID del cliente
+                    stmt.setString(3, dni); // Asigna el ID del empleado
                     stmt.executeUpdate(); // Ejecuta la actualización
                     
                 } catch (SQLException e) {
@@ -62,7 +64,7 @@ public class EmpleadosDAO {
     public void eliminar(String dni) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {String query = "DELETE FROM Empleados WHERE EmpleadoDni = ?";
-            try (PreparedStatement stmt = conexion.prepareStatement(query)) {stmt.setString(1, dni); // Asigna el ID del cliente
+            try (PreparedStatement stmt = conexion.prepareStatement(query)) {stmt.setString(1, dni); // Asigna el ID del empleado
                 stmt.executeUpdate(); // Ejecuta la eliminación
                 System.out.println("Empleado eliminado.");
             } catch (SQLException e) {
@@ -81,6 +83,8 @@ public class EmpleadosDAO {
             String telefono;
             String email;
             String puesto;
+            String jornada;
+            int horas;
         
             PreparedStatement stmt = null;
             ResultSet rs = null;
@@ -102,8 +106,10 @@ public class EmpleadosDAO {
                     puesto = rs.getString("Puesto");
                     telefono = rs.getString("Telefono");
                     email = rs.getString("Email");
+                    jornada = rs.getString("Jornada");
+                    horas = rs.getInt("HorasExtra");
 
-                    empleado = new Empleado(nombre, apellidos, dni, puesto, telefono, email);
+                    empleado = new Empleado(nombre, apellidos, dni, puesto, telefono, email, jornada);
                     return empleado;
                 }
                 
@@ -128,7 +134,7 @@ public class EmpleadosDAO {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
             // Consulta SQL para obtener todos los Cliente
-            String query = "SELECT * FROM Clientes"; 
+            String query = "SELECT * FROM Empleados"; 
             try (Statement stmt = conexion.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
                 ArrayList<Empleado> empleados = new ArrayList<>();
                 Empleado empleado; 
@@ -138,6 +144,8 @@ public class EmpleadosDAO {
                 String telefono;
                 String email;
                 String puesto;
+                String jornada;
+                int horas;
                 
                 // Iterar sobre los resultados
                 while (rs.next()) {
@@ -148,7 +156,9 @@ public class EmpleadosDAO {
                     dni = rs.getString("EmpleadoDni");
                     puesto = rs.getString("Puesto");
                     email = rs.getString("Email");
-                    empleado = new Empleado(nombre, apellidos, dni, puesto, email, telefono);
+                    jornada = rs.getString("Jornada");
+                    horas = rs.getInt("HorasExtra");
+                    empleado = new Empleado(nombre, apellidos, dni, puesto, email, telefono, jornada, horas);
                     empleados.add(empleado);
 
                 }  
