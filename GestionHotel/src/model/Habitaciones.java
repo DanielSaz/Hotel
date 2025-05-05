@@ -1,33 +1,28 @@
+package model;
 public class Habitaciones {
-    
-    private int id;  // Individual, Doble, Suite, Familiar 
-    private String numerohabitacion;
-    private String tipohabitacion;
-    private double precionoche;
-    private String estado;
+  
+    int NumeroHabitacion;
+    String tipohabitacion;
+    int capacidad;
+    double precionoche;
+    String estado;
 
-    public Habitaciones(int id, String numerohabitacion, String tipohabitacion, double precionoche, String estado) {
-        this.id = id;
-        this.numerohabitacion = numerohabitacion;
+    public Habitaciones(int NumeroHabitacion, String tipohabitacion, int capacidad,  double precionoche, String estado) {
+
+        this.NumeroHabitacion = NumeroHabitacion;
         this.tipohabitacion = tipohabitacion;
+        this.capacidad = capacidad;
         this.precionoche = precionoche;
         this.estado = estado;
     }
 
     // --- GETTERS Y SETTERS ---
-    
-    public int getID() {
-        return id;
-    }
-    public void setID(int id) {
-        this.id = id;
-    }
 
-    public String getNumeroHabitacion() {
-        return numerohabitacion;
+    public int getNumeroHabitacion() {
+        return NumeroHabitacion;
     }
-    public void setNumeroHabitacion(String numerohabitacion) {
-        this.numerohabitacion = numerohabitacion;
+    public void setNumeroHabitacion(int NumeroHabitacion) {
+        this.NumeroHabitacion = NumeroHabitacion;
     }
 
     public String getTipoHabitacion(){
