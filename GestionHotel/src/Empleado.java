@@ -5,7 +5,7 @@ public class Empleado {
     private double salario;
     private String turno; // Dia, tarde, noche 
 
-    public Empleado(String nombre, String dni, String tipo, int salario, String turno){
+    public Empleado(String nombre, String dni, String tipo, double salario, String turno){
         this.nombre = nombre;
         this.dni = dni; 
         this.tipo = tipo;
@@ -56,6 +56,13 @@ public class Empleado {
         this.turno = turno;
     }
 
+    @Override 
+    public String toString() {
+        return String.format(
+            "Empleado: %s | DNI: %s | Puesto: %s | Salario: %.2f€ | Turno: %s",
+            nombre, dni, tipo, salario, turno
+        );
+    }
 
 
 
