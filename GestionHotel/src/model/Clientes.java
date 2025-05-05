@@ -1,51 +1,49 @@
+package model;
 public class Clientes{
-    String dni;
+    String clienteDni;
     String nombre;
-    String apellidos;
-    String telefono;
+    String apellido;
     String email;
+    String telefono;
     String direccion;
    
  
-    public Clientes(String dni, String nombre, String apellidos, String telefono, String email, String direccion) {
-        this.dni = dni;
+    public Clientes(String clienteDni, String nombre, String apellido, String email, String telefono, String direccion) {
+        this.clienteDni = clienteDni;
         this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.telefono = telefono;
+        this.apellido = apellido;
         this.email = email;
+        this.telefono = telefono;
         this.direccion = direccion;
  
     }
+
  
     // Getters y Setters
-    public String getDni() {
-        return dni;
-    }
- 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public String getClienteDni() {
+        return clienteDni;
+    } 
+    public void setClienteDni(String clienteDni) {
+        this.clienteDni = clienteDni;
     }
  
     public String getNombre() {
         return nombre;
     }
- 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
  
     public String getApellidos() {
-        return apellidos;
-    }
- 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+        return apellido;
+    } 
+    public void setApellidos(String apellido) {
+        this.apellido = apellido;
     }
  
     public String getTelefono() {
         return telefono;
     }
- 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
@@ -53,7 +51,6 @@ public class Clientes{
     public String getEmail() {
         return email;
     }
- 
     public void setEmail(String email) {
         this.email = email;
     }
@@ -61,14 +58,16 @@ public class Clientes{
     public String getDireccion() {
         return direccion;
     }
- 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
  
     @Override
     public String toString() {
-        return nombre + " " + apellidos + " (DNI: " + dni + ") - Tel: " + telefono + "email: " + email + "Direccion: " + direccion;
-    }
+    return String.format(
+        "Cliente[DNI: %s, Nombre: %s, Apellido: %s, Email: %s, Teléfono: %s, Dirección: %s]",
+        clienteDni, nombre, apellido, email, telefono, direccion
+    );
+}
  
 }

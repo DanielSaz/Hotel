@@ -1,4 +1,7 @@
 import java.util.*;
+
+import model.Garaje;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
