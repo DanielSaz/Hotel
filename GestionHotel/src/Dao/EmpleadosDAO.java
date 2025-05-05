@@ -1,4 +1,5 @@
 package Dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,26 +7,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Model.Cliente;
+import Model.Empleado;
 
-public class ClienteDAO {
+public class EmpleadosDAO {
 
-    public void insertar(Cliente cliente) {
+    public void insertar(Empleado empleado) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "INSERT INTO Clientes (ClienteDni, Nombre, Apellido, Email, Telefono, Direccion) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Empleados (EmpleadoDni, Nombre, Apellido, Puesto, Email, Telefono) VALUES (?, ?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conexion.prepareStatement(query)) {
-                stmt.setString(1, cliente.getDni()); // Asigna el valor del teléfono
-                stmt.setString(2, cliente.getNombre()); 
-                stmt.setString(3, cliente.getApellidos());
-                stmt.setString(4, cliente.getEmail());
-                stmt.setString(5, cliente.getTelefono());
-                stmt.setString(6, cliente.getDireccion());
+                stmt.setString(1, empleado.getDni()); // Asigna el valor del teléfono
+                stmt.setString(2, empleado.getNombre()); 
+                stmt.setString(3, empleado.getApellidos());
+                stmt.setString(4, empleado.getPuesto());
+                stmt.setString(5, empleado.getEmail());
+                stmt.setString(6, empleado.getTelefono());
                 
                 stmt.executeUpdate(); // Ejecuta la consulta de inserción
-                System.out.println("Cliente agregado exitosamente.");
+                System.out.println("Empleado agregado exitosamente.");
                 
             }catch (SQLException e) {
-                System.out.println("Error al agregar cliente: " + e.getMessage());
+                System.out.println("Error al agregar empleado: " + e.getMessage());
             }
         }
 
@@ -35,7 +37,7 @@ public class ClienteDAO {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
            
-                String query = "UPDATE Clientes SET ? = ? WHERE ClienteDni = ?";
+                String query = "UPDATE Empleados SET ? = ? WHERE EmpleadoDni = ?";
                 try (PreparedStatement stmt = conexion.prepareStatement(query)) {
                     
                     stmt.setString(1, atributo ); // Columna que deseamos cambiar
@@ -59,33 +61,33 @@ public class ClienteDAO {
 
     public void eliminar(String dni) {
         Connection conexion = ConexionDB.conectar();
-        if (conexion != null) {String query = "DELETE FROM Clientes WHERE ClienteDni = ?";
+        if (conexion != null) {String query = "DELETE FROM Empleados WHERE EmpleadoDni = ?";
             try (PreparedStatement stmt = conexion.prepareStatement(query)) {stmt.setString(1, dni); // Asigna el ID del cliente
                 stmt.executeUpdate(); // Ejecuta la eliminación
-                System.out.println("Cliente eliminado.");
+                System.out.println("Empleado eliminado.");
             } catch (SQLException e) {
-                System.out.println("Error al eliminar cliente: " + e.getMessage());
+                System.out.println("Error al eliminar empleado: " + e.getMessage());
             }
         }
 
     }
 
-    public Cliente buscarPorDni(String dni){
+    public Empleado buscarPorDni(String dni){
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            Cliente cliente;
+            Empleado empleado;
             String nombre;
             String apellidos;
             String telefono;
             String email;
-            String direccion;
+            String puesto;
         
             PreparedStatement stmt = null;
             ResultSet rs = null;
         
 
             try {
-                String query = "SELECT Nombre, Apellidos, ClienteDni, Direccion, Telefono, Email " + "FROM Clientes WHERE ClienteDni = ?";
+                String query = "SELECT Nombre, Apellidos, ClienteDni, Direccion, Telefono, Email " + "FROM Empleados WHERE EmpleadoDni = ?";
 
                 stmt = conexion.prepareStatement(query);
                 stmt.setString(1, dni.trim()); // Usamos trim() para limpiar espacios
@@ -95,19 +97,19 @@ public class ClienteDAO {
                 if (rs.next()) {
                     // Extraemos los datos del ResultSet
                     nombre = rs.getString("Nombre");
-                    apellidos = rs.getString("Apellido");
-                    dni = rs.getString("ClienteDni");
-                    direccion = rs.getString("Direccion");
-                    telefono = rs.getString("Num_tlf");
+                    apellidos = rs.getString("Apellidos");
+                    dni = rs.getString("EmpleadoDni");
+                    puesto = rs.getString("Puesto");
+                    telefono = rs.getString("Telefono");
                     email = rs.getString("Email");
 
-                    cliente = new Cliente(nombre, apellidos, dni, direccion, telefono, email);
-                    return cliente;
+                    empleado = new Empleado(nombre, apellidos, dni, puesto, telefono, email);
+                    return empleado;
                 }
                 
 
             } catch (SQLException e) {
-                System.err.println("Error al buscar cliente por DNI: " + e.getMessage());
+                System.err.println("Error al buscar empleado por DNI: " + e.getMessage());
                 // Podrías lanzar una excepción personalizada aquí si lo prefieres
             } finally {
                 // Cerramos recursos en orden inverso a su creación
@@ -121,21 +123,21 @@ public class ClienteDAO {
         return null;
     }
 
-    public ArrayList<Cliente> obtenerTodos() {
+    public ArrayList<Empleado> obtenerTodos() {
               // Establecer conexión
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
             // Consulta SQL para obtener todos los Cliente
             String query = "SELECT * FROM Clientes"; 
             try (Statement stmt = conexion.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
-                ArrayList<Cliente> clientes = new ArrayList<>();
-                Cliente cliente; 
+                ArrayList<Empleado> empleados = new ArrayList<>();
+                Empleado empleado; 
                 String nombre;
                 String apellidos;
                 String dni;
                 String telefono;
                 String email;
-                String direccion;
+                String puesto;
                 
                 // Iterar sobre los resultados
                 while (rs.next()) {
@@ -143,15 +145,15 @@ public class ClienteDAO {
                     nombre = rs.getString("Nombre");
                     telefono = rs.getString("Telefono");
                     apellidos = rs.getString("Apellido");
-                    dni = rs.getString("ClienteDni");
-                    direccion = rs.getString("Direccion");
+                    dni = rs.getString("EmpleadoDni");
+                    puesto = rs.getString("Puesto");
                     email = rs.getString("Email");
-                    cliente = new Cliente(nombre, apellidos, dni, direccion, telefono, email);
-                    clientes.add(cliente);
+                    empleado = new Empleado(nombre, apellidos, dni, puesto, email, telefono);
+                    empleados.add(empleado);
 
                 }  
 
-                return clientes;
+                return empleados;
 
             }catch (SQLException e) {
                 System.out.println("Error al realizar la consulta: " + e.getMessage());
@@ -159,5 +161,4 @@ public class ClienteDAO {
         }
         return null;
     }
-
 }
