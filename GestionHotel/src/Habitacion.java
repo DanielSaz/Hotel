@@ -5,7 +5,6 @@ public class Habitacion {
     
     private int numero;
     private String tipo;  // Individual, Doble, Suite, Familiar 
-    
     private double precioPorNoche;
     private boolean ocupada;
     // Atributos de cliente asociado
@@ -21,6 +20,17 @@ public class Habitacion {
         this.clienteAsignado = null;
         this.fechaCheckIn = fechaCheckIn;
         this.fechaCheckOut = fechaCheckOut;
+    }
+
+    // Nuevo Constructor para añadir habitaciones sin reserva inicial
+    public Habitacion(int numero, String tipo, double precioPorNoche) {
+        this.numero = numero;
+        this.tipo = tipo;
+        this.precioPorNoche = precioPorNoche;
+        this.ocupada = false; 
+        this.clienteAsignado = null; // Sin cliente asignado
+        this.fechaCheckIn = null; // Sin fechas
+        this.fechaCheckOut = null; // Sin fechas
     }
 
     //Asigna un cliente a la habitación
@@ -60,10 +70,6 @@ public class Habitacion {
 
     public boolean isOcupada() {
         return ocupada;
-    }
-
-    public int getPlanta() {
-        return planta;
     }
 
     public Cliente getClienteAsignado() {
