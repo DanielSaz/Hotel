@@ -1,11 +1,11 @@
-public class Empleado {
+public class Empleados {
     private String nombre;
     private String dni;
     private String tipo; // Limpieza, Camarero, Recepcion, Botones
     private double salario;
     private String turno; // Dia, tarde, noche 
 
-    public Empleado(String nombre, String dni, String tipo, double salario, String turno){
+    public Empleados(String nombre, String dni, String tipo, double salario, String turno){
         this.nombre = nombre;
         this.dni = dni; 
         this.tipo = tipo;

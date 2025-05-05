@@ -1,10 +1,10 @@
-public class Cliente {
+public class Clientes {
         private String nombre;
         private boolean conDesayuno;
         private int numeroHabitacion;
         private String numeroMatricula;
 
-        public Cliente(String nombre, boolean conDesayuno, int numeroHabitacion, String numeroMatricula) {
+        public Clientes(String nombre, boolean conDesayuno, int numeroHabitacion, String numeroMatricula) {
             this.nombre = nombre;
             this.conDesayuno = conDesayuno;
             this.numeroHabitacion = numeroHabitacion;

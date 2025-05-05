@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Habitacion {
+public class Habitaciones {
     
     private int numero;
     private String tipo;  // Individual, Doble, Suite, Familiar 
@@ -12,7 +12,7 @@ public class Habitacion {
     private String fechaCheckIn;
     private String fechaCheckOut;
 
-    public Habitacion(int numero, String tipo, double precioPorNoche, String fechaCheckIn, String fechaCheckOut) {
+    public Habitaciones(int numero, String tipo, double precioPorNoche, String fechaCheckIn, String fechaCheckOut) {
         this.numero = numero;
         this.tipo = tipo;
         this.precioPorNoche = precioPorNoche;
@@ -23,7 +23,7 @@ public class Habitacion {
     }
 
     // Nuevo Constructor para añadir habitaciones sin reserva inicial
-    public Habitacion(int numero, String tipo, double precioPorNoche) {
+    public Habitaciones(int numero, String tipo, double precioPorNoche) {
         this.numero = numero;
         this.tipo = tipo;
         this.precioPorNoche = precioPorNoche;
