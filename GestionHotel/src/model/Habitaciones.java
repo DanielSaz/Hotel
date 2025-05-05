@@ -1,42 +1,49 @@
 package model;
 public class Habitaciones {
   
-    int NumeroHabitacion;
-    String tipohabitacion;
+    int numeroHabitacion;
+    String tipoHabitacion;
     int capacidad;
-    double precionoche;
+    double precioNoche;
     String estado;
 
-    public Habitaciones(int NumeroHabitacion, String tipohabitacion, int capacidad,  double precionoche, String estado) {
+    public Habitaciones(int numeroHabitacion, String tipoHabitacion, int capacidad,  double precioNoche, String estado) {
 
-        this.NumeroHabitacion = NumeroHabitacion;
-        this.tipohabitacion = tipohabitacion;
+        this.numeroHabitacion = numeroHabitacion;
+        this.tipoHabitacion = tipoHabitacion;
         this.capacidad = capacidad;
-        this.precionoche = precionoche;
+        this.precioNoche = precioNoche;
         this.estado = estado;
     }
 
-    // --- GETTERS Y SETTERS ---
 
+    // --- GETTERS Y SETTERS ---
     public int getNumeroHabitacion() {
-        return NumeroHabitacion;
+        return numeroHabitacion;
     }
-    public void setNumeroHabitacion(int NumeroHabitacion) {
-        this.NumeroHabitacion = NumeroHabitacion;
+    public void setNumeroHabitacion(int numeroHabitacion) {
+        this.numeroHabitacion = numeroHabitacion;
     }
 
     public String getTipoHabitacion(){
-        return tipohabitacion;
+        return tipoHabitacion;
     }
-    public void setTipoHabitacion(String tipohabitacion){
-        this.tipohabitacion = tipohabitacion;
+    public void setTipoHabitacion(String tipoHabitacion){
+        this.tipoHabitacion = tipoHabitacion;
+    }
+
+    public int getCapacidad(){
+        return capacidad;
+    }
+    public void setCapacidad(int capacidad){
+        this.capacidad = capacidad;
     }
 
     public double getPrecioNoche() {
-        return precionoche;
+        return precioNoche;
     }
-    public void setPrecioNoche(double precionoche) {
-        this.precionoche = precionoche;
+    public void setPrecioNoche(double precioNoche) {
+        this.precioNoche = precioNoche;
     }
 
     public String getEstado() {
@@ -48,7 +55,7 @@ public class Habitaciones {
 
     @Override
     public String toString() {
-        return String.format("Habitación[ID: %d, Número: %s, Tipo: %s, Precio: %.2f, Estado: %s]",
-                id, numerohabitacion, tipohabitacion, precionoche, estado);
+        return String.format("Habitación[Número: %s, Tipo: %s, Precio: %.2f, Estado: %s]",
+        numeroHabitacion, tipoHabitacion, precioNoche, estado);
     }
 }

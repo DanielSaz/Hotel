@@ -1,86 +1,89 @@
 package model;
 public class Empleados {
     
-    String EmpleadoDni;
-    String Nombre;
-    String Apellido;
-    String Puesto; // Limpieza, Camarero, Recepcion, Botones
-    String Email;
-    String Telefono; 
-    String Jornada;
-    int HorasExtra;
+    String empleadoDni;
+    String nombre;
+    String apellido;
+    String puesto; // Limpieza, Camarero, Recepcion, Botones
+    String email;
+    String telefono; 
+    String jornada;
+    int horasExtra;
 
-    public Empleados(String EmpleadoDni, String Nombre, String Apellido, String Puesto, String Email, String Telefono, String Jornada, int HorasExtra) {
-        this.EmpleadoDni = EmpleadoDni;
-        this.Nombre = Nombre; 
-        this.Apellido = Apellido;
-        this.Puesto = Puesto;
-        this.Email = Email; 
-        this.Telefono = Telefono;
-        this.Jornada = Jornada;
-        this.HorasExtra = HorasExtra;
+    public Empleados(String empleadoDni, String nombre, String apellido, String puesto, String email, String telefono, String jornada, int horasExtra) {
+        this.empleadoDni = empleadoDni;
+        this.nombre = nombre; 
+        this.apellido = apellido;
+        this.puesto = puesto;
+        this.email = email; 
+        this.telefono = telefono;
+        this.jornada = jornada;
+        this.horasExtra = horasExtra;
     }
 
     
+    // Getters y Setters
     public String getEmpleadoDni(){
-        return EmpleadoDni;
+        return empleadoDni;
     }
-    public void setEmpleadoDni(String EmpleadoDni){
-        this.EmpleadoDni = EmpleadoDni;
+    public void setEmpleadoDni(String empleadoDni){
+        this.empleadoDni = empleadoDni;
     }
 
     public String getNombre(){
-        return Nombre;
+        return nombre;
     }
     public void setNombre(String nombre){
-        this.Nombre = Nombre;
+        this.nombre = nombre;
     }
 
     public String getApellido(){
-        return Apellido;
+        return apellido;
     }
-    public void setApellidos(String Apellido){
-        this.Apellido = Apellido;
+    public void setApellidos(String apellido){
+        this.apellido = apellido;
     }
 
     public String getPuesto(){
-        return Puesto;
+        return puesto;
     }
-    public void setPuesto(String Puesto){
-        this.Puesto = Puesto; 
+    public void setPuesto(String puesto){
+        this.puesto = puesto; 
     }
     
     public String getEmail(){
-        return Email;
+        return email;
     }
-    public void setEmail(String Email){
-        this.Email = Email;
+    public void setEmail(String email){
+        this.email = email;
     }
 
     public String getTelefono(){
-        return Telefono;
+        return telefono;
     }
-    public void setTelefono(String Telefono){
-        this.Telefono = Telefono;
+    public void setTelefono(String telefono){
+        this.telefono = telefono;
     }
 
     public String getJornada(){
-        return Jornada;
+        return jornada;
     }
 
     public int getHorasExtra(){
-        return HorasExtra;
+        return horasExtra;
     }
-    public void setHorasExtra(int HorasExtra){
-        this.HorasExtra = HorasExtra;
+    public void setHorasExtra(int horasExtra){
+        this.horasExtra = horasExtra;
     }
 
     
 
     @Override 
     public String toString() {
-        return String.format("Empleado[DNI: %d, Nombre: %s, Apellidos: %s, Puesto: %s, Email: %s, Teléfono: %s]",
-                dni, nombre, apellidos, puesto, email, telefono);
+        return String.format(
+            "Empleado[DNI: %s, Nombre: %s, Apellido: %s, Puesto: %s, Email: %s, Teléfono: %s, Jornada: %s, Horas Extra: %d]",
+            empleadoDni, nombre, apellido, puesto, email, telefono, jornada, horasExtra
+        );
     }
 
 
