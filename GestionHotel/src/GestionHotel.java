@@ -1,5 +1,6 @@
 import java.util.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class GestionHotel {
     // Listas para gestionar todas las entidades
@@ -20,26 +21,6 @@ public class GestionHotel {
     }
 
     // Menú principal interactivo
-    public void ejecutarSistema() {
-        int opcion;
-        do {
-            mostrarMenuPrincipal();
-            opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
-            
-            switch (opcion) {
-                case 1: gestionarHabitaciones(); break;
-                case 2: gestionarEventos(); break;
-                case 3: gestionarClientes(); break;
-                case 4: gestionarTrabajadores(); break;
-                case 5: gestionarGaraje(); break;
-                case 0: System.out.println("Saliendo del sistema..."); break;
-                default: System.out.println("Opción no válida");
-            }
-        } while (opcion != 0);
-        scanner.close();
-    }
-
     private void mostrarMenuPrincipal() {
         System.out.println("\nSISTEMA DE GESTIÓN HOTELERA");
         System.out.println("1. Gestión de Habitaciones");
@@ -51,110 +32,113 @@ public class GestionHotel {
         System.out.print("Seleccione una opción: ");
     }
 
-    // Submenús para cada módulo
+    public void ejecutarSistema() {
+        int opcion;
+        do {
+            mostrarMenuPrincipal();
+            opcion = scanner.nextInt();
+            scanner.nextLine();
+            
+            switch (opcion) {
+                case 1: gestionarHabitaciones(); break;
+                case 2: gestionarEventos(); break;
+                case 3: gestionarClientes(); break;
+                case 4: gestionarTrabajadores(); break;
+                case 5: gestionarGaraje(); break;
+                case 0: System.out.println("Saliendo del sistema de gestion"); break;
+                default: System.out.println("Opción no válida");
+            }
+        } while (opcion != 0);
+        scanner.close();
+    }
+
+    // Metodo para gesitonar las habitaciones
     private void gestionarHabitaciones() {
-        System.out.println("\nGESTIÓN DE HABITACIONES");
-        System.out.println("1. Añadir habitación");
-        System.out.println("2. Reservar habitación");
-        System.out.println("3. Liberar habitación");
-        System.out.println("4. Mostrar todas");
-        System.out.print("Opción: ");
-        
-        switch (scanner.nextInt()) {
-            case 1:
-                System.out.print("Número: ");
-                int num = scanner.nextInt();
-                scanner.nextLine();
-                System.out.print("Tipo (Individual/Doble/Suite): ");
-                String tipo = scanner.nextLine();
-                System.out.print("Precio por noche: ");
-                double precio = scanner.nextDouble();
-                agregarHabitacion(new Habitacion(num, tipo, precio));
+        int opcion;
+        do {
+            System.out.println("\nGESTIÓN DE HABITACIONES");
+            System.out.println("1. Añadir habitación");
+            System.out.println("2. Reservar habitación");
+            System.out.println("3. Liberar habitación");
+            System.out.println("4. Mostrar todas las habitaciones");
+            System.out.println("0. Volver al menú principal");
+            System.out.print("Opción: ");
+            opcion = scanner.nextInt();
+            
+            switch (opcion) {       
+                case 1:
+                añadirHabitacion();
                 break;
-            case 2:
-                System.out.print("Número de habitación a reservar: ");
-                reservarHabitacion(scanner.nextInt());
+
+                case 2:
+                reservarHabitacion();
                 break;
-            case 4:
+                
+                case 3:
+                liberarHabitacion();
+                break;
+                
+                case 4:
                 mostrarHabitaciones();
                 break;
-        }
+
+                case 0:
+                System.out.println("Volviendo al menú principal...");
+                break;
+                    default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+            }
+
+        } while (opcion != 0);
     }
 
-    
-        // Métodos para mostrar listados
-        public void mostrarHabitaciones() {
-            System.out.println("\nLISTADO DE HABITACIONES:");
-            if (habitaciones.isEmpty()) {
-                System.out.println("No hay habitaciones registradas.");
-                return;
-            }
-            System.out.printf("%-10s %-15s %-10s %-10s%n", "Número", "Tipo", "Precio", "Estado");
-            for (Habitacion h : habitaciones) {
-                System.out.printf("%-10d %-15s %-10.2f %-10s%n", 
-                    h.getNumero(), h.getTipo(), h.getPrecio(), 
-                    h.isOcupada() ? "Ocupada" : "Disponible");
-            }
-        }
-    
-        public void mostrarEventos() {
-            System.out.println("\nEVENTOS PROGRAMADOS:");
-            if (eventos.isEmpty()) {
-                System.out.println("No hay eventos programados.");
-                return;
-            }
-            for (Evento e : eventos) {
-                System.out.println("- " + e.getNombre() + " (Fecha: " + e.getFecha() + ")");
-            }
-        }
-    
+    //Metodo para añadir una habitacion
+    private void añadirHabitacion() {
+        System.out.println("Numero de habitacion: ");
+        int numero = scanner.nextInt();
+        System.out.println("Tipo de habitacion (Indivivual/Doble/Familiar/Suite): ");
+        String tipo = scanner.nextLine();
+        
+        System.out.print("Precio por noche: ");
+        double precio = Double.parseDouble(scanner.nextLine());
 
+        habitaciones.add(new Habitacion(numero, tipo, precio));
+        System.out.println("Habitación añadida con éxito");
+
+    }
+    
     // Método para reservar habitación
     public boolean reservarHabitacion(int numero) {
-        for (Habitacion h : habitaciones) {
-            if (h.getNumero() == numero && !h.isOcupada()) {
-                h.reservar();
-                System.out.println("✅ Habitación " + numero + " reservada con éxito");
-                return true;
+        for (Habitacion hab : habitaciones) {
+            if (hab.getNumero() == numero && !hab.isOcupada()) {
+                hab.reservar();
+                 System.out.println("Habitación " + numero + " reservada con éxito");
+                    return true;
+                }
             }
-        }
-        System.out.println("❌ No se pudo reservar la habitación");
-        return false;
+            System.out.println("No se pudo reservar la habitación");
+            return false;
     }
+
+    // Métodos para mostrar habitaciones
+    public void mostrarHabitaciones() {
+        System.out.println("\nLISTADO DE HABITACIONES:");
+        if (habitaciones.isEmpty()) {
+            System.out.println("No hay habitaciones registradas.");
+            return;
+        }
+        System.out.printf("%-10s %-15s %-10s %-10s%n", "Número", "Tipo", "Precio", "Estado");
+        for (Habitacion h : habitaciones) {
+            System.out.printf("%-10d %-15s %-10.2f %-10s%n", 
+                h.getNumero(), h.getTipo(), h.getPrecio(), 
+                h.isOcupada() ? "Ocupada" : "Disponible");
+        }
+    }
+    
 
     public static void main(String[] args) {
-        new HotelGestion().ejecutarSistema();
+        GestionHotel sistema = new GestionHotel();
+        sistema.ejecutarSistema();
     }
 }
 
-// Clases del modelo (deben estar en archivos separados)
-class Habitacion {
-    private int numero;
-    private String tipo;
-    private double precio;
-    private boolean ocupada;
-
-    public Habitacion(int numero, String tipo, double precio) {
-        this.numero = numero;
-        this.tipo = tipo;
-        this.precio = precio;
-    }
-    // Getters y setters...
-}
-
-class Garaje {
-    private int capacidad;
-    public Garaje(int capacidad) { this.capacidad = capacidad; }
-}
-
-class Trabajador {
-    private String nombre;
-    private String puesto;
-    private double salario;
-    public Trabajador(String nombre, String puesto, double salario) {
-        this.nombre = nombre;
-        this.puesto = puesto;
-        this.salario = salario;
-    }
-    // Getters...
-}

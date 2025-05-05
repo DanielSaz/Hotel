@@ -3,20 +3,26 @@ public class Cliente {
         private boolean conDesayuno;
         private int numeroHabitacion;
         private String numeroMatricula;
-    
-        public Cliente(String nombre, boolean conDesayuno) {
+
+        public Cliente(String nombre, boolean conDesayuno, int numeroHabitacion, String numeroMatricula) {
             this.nombre = nombre;
             this.conDesayuno = conDesayuno;
             this.numeroHabitacion = numeroHabitacion;
             this.numeroMatricula = numeroMatricula;
         }
         //Metodo para registrar un vehiculo en el garaje 
-        public boolean  registrarVehiculo(Garaje garaje, String matricula) {
+        public void registrarVehiculo(Garaje garaje, String matricula) {
+            
+            // Validar que tenga habitación asignada
+            if (this.numeroHabitacion <= 0) {
+                throw new IllegalStateException("El cliente no tiene habitación asignada");
+            }
+            
             if (garaje.registrarVehiculo(matricula, this.numeroHabitacion)) {
                 this.numeroMatricula = matricula;
-                return true; 
+                return true;
             }
-                return false;
+            return false;
         }
 
         //Metodo para liberar plaza de Garaje
@@ -28,7 +34,7 @@ public class Cliente {
         }
 
         public void getNombre(){
-            
+            return nombre;
         }
     
         @Override
