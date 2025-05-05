@@ -32,14 +32,12 @@ public class GestionHotel {
         System.out.print("Seleccione una opción: ");
     }
 
-
-    // Submenús para cada módulo
     public void ejecutarSistema() {
         int opcion;
         do {
             mostrarMenuPrincipal();
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
+            scanner.nextLine();
             
             switch (opcion) {
                 case 1: gestionarHabitaciones(); break;
@@ -54,34 +52,59 @@ public class GestionHotel {
         scanner.close();
     }
 
+    // Metodo para gesitonar las habitaciones
     private void gestionarHabitaciones() {
         int opcion;
-        System.out.println("\nGESTIÓN DE HABITACIONES");
-        System.out.println("1. Añadir habitación");
-        System.out.println("2. Reservar habitación");
-        System.out.println("3. Liberar habitación");
-        System.out.println("4. Mostrar todas las habitaciones");
-        System.out.print("Opción: ");
-        
-        switch (opcion) {
-            case 1:
-                System.out.print("Número: ");
-                int num = scanner.nextInt();
-                scanner.nextLine();
-                System.out.print("Tipo (Individual/Doble/Suite): ");
-                String tipo = scanner.nextLine();
-                System.out.print("Precio por noche: ");
-                double precio = scanner.nextDouble();
-                agregarHabitacion(new Habitacion(num, tipo, precio));
+        do {
+            System.out.println("\nGESTIÓN DE HABITACIONES");
+            System.out.println("1. Añadir habitación");
+            System.out.println("2. Reservar habitación");
+            System.out.println("3. Liberar habitación");
+            System.out.println("4. Mostrar todas las habitaciones");
+            System.out.println("0. Volver al menú principal");
+            System.out.print("Opción: ");
+            opcion = scanner.nextInt();
+            
+            switch (opcion) {       
+                case 1:
+                añadirHabitacion();
                 break;
-            case 2:
-                System.out.print("Número de habitación a reservar: ");
-                reservarHabitacion(scanner.nextInt());
+
+                case 2:
+                reservarHabitacion();
                 break;
-            case 4:
+                
+                case 3:
+                liberarHabitacion();
+                break;
+                
+                case 4:
                 mostrarHabitaciones();
                 break;
-        }
+
+                case 0:
+                System.out.println("Volviendo al menú principal...");
+                break;
+                    default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+            }
+
+        } while (opcion != 0);
+    }
+
+    //Metodo para añadir una habitacion
+    private void añadirHabitacion() {
+        System.out.println("Numero de habitacion: ");
+        int numero = scanner.nextInt();
+        System.out.println("Tipo de habitacion (Indivivual/Doble/Familiar/Suite): ");
+        String tipo = scanner.nextLine();
+        
+        System.out.print("Precio por noche: ");
+        double precio = Double.parseDouble(scanner.nextLine());
+
+        habitaciones.add(new Habitacion(numero, tipo, precio));
+        System.out.println("Habitación añadida con éxito");
+
     }
     
     // Método para reservar habitación

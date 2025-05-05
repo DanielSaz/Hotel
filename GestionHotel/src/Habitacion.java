@@ -5,19 +5,18 @@ public class Habitacion {
     
     private int numero;
     private String tipo;  // Individual, Doble, Suite, Familiar 
+    
     private double precioPorNoche;
     private boolean ocupada;
-    private int planta;
     // Atributos de cliente asociado
     private Cliente clienteAsignado;
     private String fechaCheckIn;
     private String fechaCheckOut;
 
-    public Habitacion(int numero, String tipo, double precioPorNoche, int planta, String fechaCheckIn, String fechaCheckOut) {
+    public Habitacion(int numero, String tipo, double precioPorNoche, String fechaCheckIn, String fechaCheckOut) {
         this.numero = numero;
         this.tipo = tipo;
         this.precioPorNoche = precioPorNoche;
-        this.planta = planta;
         this.ocupada = false;
         this.clienteAsignado = null;
         this.fechaCheckIn = fechaCheckIn;
