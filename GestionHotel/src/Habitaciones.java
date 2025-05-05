@@ -1,87 +1,59 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Habitaciones {
     
-    private int numero;
-    private String tipo;  // Individual, Doble, Suite, Familiar 
-    private double precioPorNoche;
-    private boolean ocupada;
-    // Atributos de cliente asociado
-    private Cliente clienteAsignado;
-    private String fechaCheckIn;
-    private String fechaCheckOut;
+    private int id;  // Individual, Doble, Suite, Familiar 
+    private String numerohabitacion;
+    private String tipohabitacion;
+    private double precionoche;
+    private String estado;
 
-    public Habitaciones(int numero, String tipo, double precioPorNoche, String fechaCheckIn, String fechaCheckOut) {
-        this.numero = numero;
-        this.tipo = tipo;
-        this.precioPorNoche = precioPorNoche;
-        this.ocupada = false;
-        this.clienteAsignado = null;
-        this.fechaCheckIn = fechaCheckIn;
-        this.fechaCheckOut = fechaCheckOut;
-    }
-
-    // Nuevo Constructor para añadir habitaciones sin reserva inicial
-    public Habitaciones(int numero, String tipo, double precioPorNoche) {
-        this.numero = numero;
-        this.tipo = tipo;
-        this.precioPorNoche = precioPorNoche;
-        this.ocupada = false; 
-        this.clienteAsignado = null; // Sin cliente asignado
-        this.fechaCheckIn = null; // Sin fechas
-        this.fechaCheckOut = null; // Sin fechas
-    }
-
-    //Asigna un cliente a la habitación
-    public boolean asignarCliente(Cliente cliente, String fechaIn, String fechaOut) {
-        if (!ocupada) {
-            this.clienteAsignado = cliente;
-            this.fechaCheckIn = fechaIn;
-            this.fechaCheckOut = fechaOut;
-            this.ocupada = true;
-            return true;
-        }
-        return false;
-    }
-
-
-    //Libera la habitación (check-out)
-    public void liberarHabitacion() {
-        this.clienteAsignado = null;
-        this.ocupada = false;
-        this.fechaCheckIn = null;
-        this.fechaCheckOut = null;
+    public Habitaciones(int id, String numerohabitacion, String tipohabitacion, double precionoche, String estado) {
+        this.id = id;
+        this.numerohabitacion = numerohabitacion;
+        this.tipohabitacion = tipohabitacion;
+        this.precionoche = precionoche;
+        this.estado = estado;
     }
 
     // --- GETTERS Y SETTERS ---
     
-    public int getNumero() {
-        return numero;
+    public int getID() {
+        return id;
+    }
+    public void setID(int id) {
+        this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getNumeroHabitacion() {
+        return numerohabitacion;
+    }
+    public void setNumeroHabitacion(String numerohabitacion) {
+        this.numerohabitacion = numerohabitacion;
     }
 
-    public double getPrecioPorNoche() {
-        return precioPorNoche;
+    public String getTipoHabitacion(){
+        return tipohabitacion;
+    }
+    public void setTipoHabitacion(String tipohabitacion){
+        this.tipohabitacion = tipohabitacion;
     }
 
-    public boolean isOcupada() {
-        return ocupada;
+    public double getPrecioNoche() {
+        return precionoche;
+    }
+    public void setPrecioNoche(double precionoche) {
+        this.precionoche = precionoche;
     }
 
-    public Cliente getClienteAsignado() {
-        return clienteAsignado;
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return String.format(
-            "[%d] %s (Planta %d) - %s",
-            numero, tipo, planta,
-            ocupada ? "Ocupada por " + clienteAsignado.getNombre() : "Disponible"
-        );
+        return String.format("Habitación[ID: %d, Número: %s, Tipo: %s, Precio: %.2f, Estado: %s]",
+                id, numerohabitacion, tipohabitacion, precionoche, estado);
     }
 }

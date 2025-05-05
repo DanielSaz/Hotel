@@ -1,71 +1,71 @@
 public class Empleados {
+    
+    private int dni;
     private String nombre;
-    private String dni;
-    private String tipo; // Limpieza, Camarero, Recepcion, Botones
-    private double salario;
-    private String turno; // Dia, tarde, noche 
+    private String apellidos;
+    private String puesto; // Limpieza, Camarero, Recepcion, Botones
+    private String email;
+    private String telefono; 
 
-    public Empleados(String nombre, String dni, String tipo, double salario, String turno){
-        this.nombre = nombre;
-        this.dni = dni; 
-        this.tipo = tipo;
-        this.salario = salario;
-        this.turno = turno; 
+    public Empleados(int dni, String nombre, String apellidos, String puesto, String email, String telefono) {
+        this.dni = dni;
+        this.nombre = nombre; 
+        this.apellidos = apellidos;
+        this.puesto = puesto;
+        this.email = email; 
+        this.telefono = telefono;
     }
 
-    // Getters
+    
+    public int getDni(){
+        return dni;
+    }
+    public void setDni(int dni){
+        this.dni = dni;
+    }
+
     public String getNombre(){
         return nombre;
     }
-
-    public String getDni(){
-        return dni;
-    }
-
-    public String getTipo(){
-        return tipo;
-    }
-
-    public double  getSalario(){
-        return salario;
-    }
-
-    public String getTurno(){
-        return turno;
-    }
-
-    //Stters
-
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
 
-    public void setDni(String dni){
-        this.dni = dni;
+    public String getApellidos(){
+        return apellidos;
+    }
+    public void setApellidos(String apellidos){
+        this.apellidos = apellidos;
     }
 
-    public void setTipo(String tipo){
-        this.tipo = tipo;
+    public String getPuesto(){
+        return puesto;
+    }
+    public void setPuesto(String puesto){
+        this.puesto = puesto; 
+    }
+    
+    public String getEmail(){
+        return email;
+    }
+    public void setEmail(String email){
+        this.email = email;
     }
 
-    public void setSalario(double salario){
-        this.salario = salario;
+    public String getTelefono(){
+        return telefono;
+    }
+    public void setTelefono(String telefono){
+        this.telefono = telefono;
     }
 
-    public void setTurno(String turno){
-        this.turno = turno;
-    }
+    
 
     @Override 
     public String toString() {
-        return String.format(
-            "Empleado: %s | DNI: %s | Puesto: %s | Salario: %.2f€ | Turno: %s",
-            nombre, dni, tipo, salario, turno
-        );
+        return String.format("Empleado[DNI: %d, Nombre: %s, Apellidos: %s, Puesto: %s, Email: %s, Teléfono: %s]",
+                dni, nombre, apellidos, puesto, email, telefono);
     }
-
-
-
 
 
     
