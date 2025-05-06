@@ -68,6 +68,5 @@ public class Clientes{
         "Cliente[DNI: %s, Nombre: %s, Apellido: %s, Email: %s, Teléfono: %s, Dirección: %s]",
         clienteDni, nombre, apellido, email, telefono, direccion
     );
-}
- 
+    }
 }
